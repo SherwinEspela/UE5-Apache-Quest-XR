@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Sherwin Espela 2024. All Rights Reserved.
 
 #pragma once
 
@@ -6,7 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "VRPlayer.generated.h"
 
-class AApache;
+class AChopperPawn;
+struct FInputActionValue;
 
 UCLASS()
 class UNREALAPACHEQUESTXR_API AVRPlayer : public APawn
@@ -19,13 +20,16 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void MoveChopper(const FInputActionValue& Value);
+	void RotateChopper(const FInputActionValue& Value);
+
 protected:
 	virtual void BeginPlay() override;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Apache Chopper")
-	TSubclassOf<AApache> ApacheClass;
+	TSubclassOf<AChopperPawn> ChopperPawnClass;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Apache Chopper")
-	AApache* Apache;
+	AChopperPawn* Chopper;
 };

@@ -1,13 +1,13 @@
 // Copyright Sherwin Espela 2024. All Rights Reserved.
 
 
-#include "Player/ApacheController.h"
+#include "Player/ChopperController.h"
 #include "Player/VRPlayer.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 
-void AApacheController::BeginPlay()
+void AChopperController::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -17,22 +17,22 @@ void AApacheController::BeginPlay()
 	PlayerSubsystem->AddMappingContext(InputMappingContext, 0);
 }
 
-void AApacheController::SetupInputComponent()
+void AChopperController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
 	EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
-	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AApacheController::Move);
-	EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AApacheController::Rotate);
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AChopperController::Move);
+	EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AChopperController::Rotate);
 }
 
-void AApacheController::Move(const FInputActionValue& Value)
+void AChopperController::Move(const FInputActionValue& Value)
 {
 	if (VRPlayer == nullptr) return;
 	VRPlayer->MoveChopper(Value);
 }
 
-void AApacheController::Rotate(const FInputActionValue& Value)
+void AChopperController::Rotate(const FInputActionValue& Value)
 {
 	if (VRPlayer == nullptr) return;
 	VRPlayer->RotateChopper(Value);

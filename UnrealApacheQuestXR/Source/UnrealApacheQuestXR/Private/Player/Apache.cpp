@@ -1,6 +1,7 @@
 // Copyright Sherwin Espela 2024. All Rights Reserved.
 
 #include "Player/Apache.h"
+#include "InputActionValue.h"
 
 AApache::AApache()
 {
@@ -22,3 +23,11 @@ void AApache::Tick(float DeltaTime)
 
 }
 
+void AApache::Move(const FInputActionValue& Value)
+{
+	FVector2D MovementVector = Value.Get<FVector2D>();
+}
+
+void AApache::Rotate(const FInputActionValue& Value)
+{
+}

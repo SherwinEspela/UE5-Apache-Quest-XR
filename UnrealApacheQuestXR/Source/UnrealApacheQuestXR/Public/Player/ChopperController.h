@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "ApacheController.generated.h"
+#include "ChopperController.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
@@ -12,16 +12,14 @@ class UEnhancedInputComponent;
 struct FInputActionValue;
 class AVRPlayer;
 
-// TODO: remove/delete later
-
 /**
  * 
  */
 UCLASS()
-class UNREALAPACHEQUESTXR_API AApacheController : public APlayerController
+class UNREALAPACHEQUESTXR_API AChopperController : public APlayerController
 {
 	GENERATED_BODY()
-
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
@@ -46,5 +44,4 @@ protected:
 
 private:
 	UEnhancedInputComponent* EnhancedInputComponent;
-
 };

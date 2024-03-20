@@ -1,8 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+// Copyright Sherwin Espela 2024. All Rights Reserved.
 
 #include "Player/VRPlayer.h"
-#include "Player/Apache.h"
+#include "Player/ChopperPawn.h"
+#include "InputActionValue.h"
 
 AVRPlayer::AVRPlayer()
 {
@@ -14,11 +14,11 @@ void AVRPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	if (ApacheClass)
+	if (ChopperPawnClass)
 	{
 		const FVector Location = { 0, 0, 0 };
 		const FRotator Rotation = FRotator(0, 0, 0);
-		Apache = GetWorld()->SpawnActor<AApache>(ApacheClass, Location, Rotation);
+		Chopper = GetWorld()->SpawnActor<AChopperPawn>(ChopperPawnClass, Location, Rotation);
 	}
 }
 
@@ -26,6 +26,18 @@ void AVRPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AVRPlayer::MoveChopper(const FInputActionValue& Value)
+{
+	if (Chopper == nullptr) return;
+	Chopper->Move(Value);
+}
+
+void AVRPlayer::RotateChopper(const FInputActionValue& Value)
+{
+	if (Chopper == nullptr) return;
+	Chopper->Rotate(Value);
 }
 
 //void AVRPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
