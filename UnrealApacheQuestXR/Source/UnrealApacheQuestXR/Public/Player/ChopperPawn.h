@@ -29,4 +29,10 @@ protected:
 protected:
 	UPROPERTY(EditAnywhere, Category = "Chopper Mesh")
 	USkeletalMeshComponent* ChopperMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Chopper Properties")
+	float MovementSpeedMultiplier = 100.f; // Apache reallife average speed is 293Km/hr
+
+	UPROPERTY(EditAnywhere, Category = "Chopper Properties")
+	float YawOffsetAngle = 45.f;
 };
