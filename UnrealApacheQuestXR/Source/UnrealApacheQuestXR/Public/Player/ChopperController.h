@@ -38,9 +38,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
 	UInputAction* RotateAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Input")
+	UInputAction* IAAltitude;
+
 protected:
 	void Move(const FInputActionValue& Value);
 	void Rotate(const FInputActionValue& Value);
+	void SetAltitude(const FInputActionValue& Value);
 
 private:
 	UEnhancedInputComponent* EnhancedInputComponent;

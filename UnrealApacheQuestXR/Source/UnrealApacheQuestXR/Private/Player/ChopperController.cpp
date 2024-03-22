@@ -24,6 +24,7 @@ void AChopperController::SetupInputComponent()
 	EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AChopperController::Move);
 	EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AChopperController::Rotate);
+	EnhancedInputComponent->BindAction(IAAltitude, ETriggerEvent::Triggered, this, &AChopperController::SetAltitude);
 }
 
 void AChopperController::Move(const FInputActionValue& Value)
@@ -36,4 +37,10 @@ void AChopperController::Rotate(const FInputActionValue& Value)
 {
 	if (VRPlayer == nullptr) return;
 	VRPlayer->RotateChopper(Value);
+}
+
+void AChopperController::SetAltitude(const FInputActionValue& Value)
+{
+	if (VRPlayer == nullptr) return;
+	VRPlayer->SetChopperAltitude(Value);
 }

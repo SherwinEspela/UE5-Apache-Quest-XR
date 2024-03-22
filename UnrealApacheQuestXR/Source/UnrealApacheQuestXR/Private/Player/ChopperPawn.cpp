@@ -33,7 +33,7 @@ void AChopperPawn::Move(const FInputActionValue& Value)
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
 	float Speed = MovementSpeedMultiplier * GetWorld()->DeltaTimeSeconds;
-	AddActorLocalOffset(FVector(MovementVector.Y, MovementVector.X, GetActorLocation().Z) * Speed);
+	AddActorLocalOffset(FVector(MovementVector.Y, MovementVector.X, 0.f) * Speed);
 }
 
 void AChopperPawn::Rotate(const FInputActionValue& Value)
@@ -42,4 +42,11 @@ void AChopperPawn::Rotate(const FInputActionValue& Value)
 	FRotator CurrentRotation = GetActorRotation();
 	CurrentRotation.Yaw = RotateVector.X * YawOffsetAngle * GetWorld()->DeltaTimeSeconds;
 	AddActorWorldRotation(CurrentRotation);
+}
+
+void AChopperPawn::Altitude(const FInputActionValue& Value)
+{
+	FVector2D AltitudeVector = Value.Get<FVector2D>();
+	float Speed = AltitudeSpeedMultiplier * GetWorld()->DeltaTimeSeconds;
+	AddActorWorldOffset(FVector(0.f, 0.f, AltitudeVector.X) * Speed);
 }

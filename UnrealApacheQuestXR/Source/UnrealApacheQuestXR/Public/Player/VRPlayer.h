@@ -22,6 +22,7 @@ public:
 
 	void MoveChopper(const FInputActionValue& Value);
 	void RotateChopper(const FInputActionValue& Value);
+	void SetChopperAltitude(const FInputActionValue& Value);
 
 protected:
 	virtual void BeginPlay() override;

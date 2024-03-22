@@ -40,6 +40,12 @@ void AVRPlayer::RotateChopper(const FInputActionValue& Value)
 	Chopper->Rotate(Value);
 }
 
+void AVRPlayer::SetChopperAltitude(const FInputActionValue& Value)
+{
+	if (Chopper == nullptr) return;
+	Chopper->Altitude(Value);
+}
+
 //void AVRPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 //{
 //	Super::SetupPlayerInputComponent(PlayerInputComponent);

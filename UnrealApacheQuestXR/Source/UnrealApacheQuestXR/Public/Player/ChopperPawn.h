@@ -22,6 +22,7 @@ public:
 public:
 	void Move(const FInputActionValue& Value);
 	void Rotate(const FInputActionValue& Value);
+	void Altitude(const FInputActionValue& Value);
 
 protected:
 	virtual void BeginPlay() override;
@@ -30,9 +31,13 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Chopper Mesh")
 	USkeletalMeshComponent* ChopperMesh;
 
+	//Note: Apache reallife average speed is 293Km/hr
 	UPROPERTY(EditAnywhere, Category = "Chopper Properties")
-	float MovementSpeedMultiplier = 100.f; // Apache reallife average speed is 293Km/hr
+	float MovementSpeedMultiplier = 100.f;
 
 	UPROPERTY(EditAnywhere, Category = "Chopper Properties")
 	float YawOffsetAngle = 45.f;
+
+	UPROPERTY(EditAnywhere, Category = "Chopper Properties")
+	float AltitudeSpeedMultiplier = 70.f;
 };
