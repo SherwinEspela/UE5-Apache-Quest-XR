@@ -3,6 +3,8 @@
 #include "Player/VRPlayer.h"
 #include "Player/ChopperPawn.h"
 #include "InputActionValue.h"
+#include "MissionEnvironment/MissionEnvironmentActor.h"
+#include "Kismet/GameplayStatics.h"
 
 AVRPlayer::AVRPlayer()
 {
@@ -19,6 +21,14 @@ void AVRPlayer::BeginPlay()
 		const FVector Location = { 0, 0, 0 };
 		const FRotator Rotation = FRotator(0, 0, 0);
 		Chopper = GetWorld()->SpawnActor<AChopperPawn>(ChopperPawnClass, Location, Rotation);
+	}
+
+	TArray<AActor*> MissionEnvironmentActors;
+	UGameplayStatics::GetAllActorsWithTag(this, FName(ACTOR_TAG_MISSION_ENVIRONMENT), MissionEnvironmentActors);
+
+	if (MissionEnvironmentActors.Num() > 0)
+	{
+		MissionEnvironment = CastChecked<AMissionEnvironmentActor>(MissionEnvironmentActors[0]);
 	}
 }
 
@@ -45,10 +55,3 @@ void AVRPlayer::SetChopperAltitude(const FInputActionValue& Value)
 	if (Chopper == nullptr) return;
 	Chopper->Altitude(Value);
 }
-
-//void AVRPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-//{
-//	Super::SetupPlayerInputComponent(PlayerInputComponent);
-//
-//}
-

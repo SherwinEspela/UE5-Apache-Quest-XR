@@ -24,6 +24,11 @@ public:
 	void Rotate(const FInputActionValue& Value);
 	void Altitude(const FInputActionValue& Value);
 
+	FVector GetMovementOffset(const FInputActionValue& Value) const;
+
+public:
+	//FORCEINLINE FRotator GetRotation() const { return GetActorRotation(); }
+
 protected:
 	virtual void BeginPlay() override;
 

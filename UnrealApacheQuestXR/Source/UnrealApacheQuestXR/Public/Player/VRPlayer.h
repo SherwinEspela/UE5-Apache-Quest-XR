@@ -7,6 +7,7 @@
 #include "VRPlayer.generated.h"
 
 class AChopperPawn;
+class AMissionEnvironmentActor;
 struct FInputActionValue;
 
 UCLASS()
@@ -16,10 +17,9 @@ class UNREALAPACHEQUESTXR_API AVRPlayer : public APawn
 
 public:
 	AVRPlayer();
-
 	virtual void Tick(float DeltaTime) override;
-	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
 	void MoveChopper(const FInputActionValue& Value);
 	void RotateChopper(const FInputActionValue& Value);
 	void SetChopperAltitude(const FInputActionValue& Value);
@@ -28,9 +28,12 @@ protected:
 	virtual void BeginPlay() override;
 
 protected:
-	UPROPERTY(EditDefaultsOnly, Category = "Apache Chopper")
+	UPROPERTY(EditAnywhere, Category = "Apache Chopper")
 	TSubclassOf<AChopperPawn> ChopperPawnClass;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Apache Chopper")
 	AChopperPawn* Chopper;
+
+private:
+	AMissionEnvironmentActor* MissionEnvironment;
 };
